@@ -1,0 +1,29 @@
+@typeList: primary, success, warn, error;
+@typeListColor: #707AE4,#ed4014,#ff9900,#19be6b;
+
+.btnFun(@typeName, @typeColor) {
+  .@{preName}-btn {
+    &__@{typeName}{
+      &-bg{
+        background: @typeColor;
+      }
+      button{
+        background: @typeColor;
+        padding: 4px 12px;
+        border: solid @typeColor 1px;
+        border-radius: 4px;
+        color: #fff;
+        &:hover{
+          box-shadow: 0 0 5px @typeColor
+        }
+      }
+    }
+  }
+}
+
+.btnFor(@i) when (@i<length(@typeList)+1) {
+  .btnFun(extract(@typeList, @i), extract(@typeListColor, @i));
+  .btnFor(@i + 1);
+}
+
+.btnFor(1);
