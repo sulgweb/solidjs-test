@@ -14,15 +14,29 @@ function Select(props: SelectProps) {
   const [visable, setVisable] = createSignal(false);
   return (
     <div
-      class={`${preName}-select`}
+      classList={{
+        [`${preName}-select`]: true,
+      }}
       use:clickOutside={() => {
         console.log("outside");
         setVisable(false);
       }}
     >
-      <div onClick={(e) => setVisable(!visable())}>111</div>
+      <div
+        classList={{
+          [`${preName}-select-text`]: true,
+          [`${preName}-select-focus`]: visable(),
+        }}
+        onClick={(e) => setVisable(!visable())}
+      >
+        请选择
+      </div>
       <Show when={visable()}>
-        <div class={`${preName}-select-modal`}>
+        <div
+          classList={{
+            [`${preName}-select-modal`]: true,
+          }}
+        >
           <For each={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}>
             {(item) => <div>{item}</div>}
           </For>

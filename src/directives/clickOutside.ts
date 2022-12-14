@@ -7,7 +7,6 @@ declare module "solid-js" {
     }
 }
 export const clickOutside = function (el: Element, accessor: () => Function) {
-    console.log("active");
     const onClick = (e: any) => !el.contains(e.target) && accessor()?.();
     window.addEventListener("click", onClick);
 
